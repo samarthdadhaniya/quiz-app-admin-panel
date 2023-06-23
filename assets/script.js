@@ -113,6 +113,7 @@ $(document).ready(function () {
     });
 });
 
+// for adding students via API to Database
 document.getElementById('saveStudentButton').addEventListener('click', function () {
   // Get form data
   const name = document.getElementById('studentName').value;
@@ -179,6 +180,68 @@ document.getElementById('saveStudentButton').addEventListener('click', function 
     })
     .catch(function (error) {
       console.error('Error adding student:', error);
+      // Handle the error or display error message
+    });
+});
+
+// for adding Courses via API to Database
+document.getElementById('saveCourseButton').addEventListener('click', function() {
+  // Get form data
+  const name = document.getElementById('courseName').value;
+  const teacher = document.getElementById('teacherName').value;
+
+  // Create course object
+  const course = {
+    name: name,
+    teacher_name: teacher
+  };
+
+  // Send POST request to the API endpoint
+  fetch('http://localhost:3000/courses', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(course),
+  })
+    .then(function(response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Failed to add course');
+      }
+    })
+    .then(function(data) {
+      console.log('Course added successfully');
+      // Perform any additional actions or display success message
+      $('#addCourseModal').modal('hide');
+
+      fetch('http://localhost:3000/courses')
+        .then((data) => {
+          console.log("fetching..")
+          return data.json();
+          
+        })
+        .then((objectData) => {
+          console.log(objectData)
+
+          let tableData = "";
+          objectData.forEach((values) => {
+            tableData += `
+              <tr data-id="${values._id}">
+                <td>${values.name}</td>
+                <td>${values.teacher_name}</td>
+                <td>
+                  <button class="btn btn-primary">Edit</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
+              </tr>`;
+          });
+          $('#course_table_body').html(tableData);
+        });
+    })
+    .catch(function(error) {
+      console.error('Error adding course:', error);
       // Handle the error or display error message
     });
 });
