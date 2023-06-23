@@ -1,0 +1,10 @@
+.section {
+    display: none;
+  }
+
+  .header-cell {
+    background-color: #f8f9fa; /* Set your desired background color */
+    color: #333; /* Set your desired text color */
+    font-weight: bold;
+  }
+  
