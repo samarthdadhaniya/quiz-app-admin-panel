@@ -245,3 +245,100 @@ document.getElementById('saveCourseButton').addEventListener('click', function()
       // Handle the error or display error message
     });
 });
+
+// Edit student data
+$('#table_body').on('click', '.btn-primary', function() {
+  var row = $(this).closest('tr');
+  var studentId = row.data('id');
+
+  // Retrieve student data from the table row
+  var name = row.find('td:eq(0)').text();
+  var email = row.find('td:eq(1)').text();
+  var password = row.find('td:eq(2)').text();
+  var contact = row.find('td:eq(3)').text();
+  var dateOfAdmission = row.find('td:eq(4)').text();
+
+  // Populate modal fields with student data
+  $('#editStudentId').val(studentId);
+  $('#editStudentName').val(name);
+  $('#editEmail').val(email);
+  $('#editPassword').val(password);
+  $('#editContactNumber').val(contact);
+  $('#editDateOfAdmission').val(dateOfAdmission);
+
+  // Show the edit student modal
+  $('#editStudentModal').modal('show');
+});
+
+// Update student data
+$('#saveEditStudentButton').click(function() {
+  // Get form data from the modal
+  var studentId = $('#editStudentId').val();
+  var name = $('#editStudentName').val();
+  var email = $('#editEmail').val();
+  var password = $('#editPassword').val();
+  var contact = $('#editContactNumber').val();
+  var dateOfAdmission = $('#editDateOfAdmission').val();
+
+  // Create student object with updated data
+  var updatedStudent = {
+    name: name,
+    email: email,
+    password: password,
+    contact: contact,
+    date_of_admission: dateOfAdmission
+  };
+
+  // Send PUT request to update the student data
+  fetch('http://localhost:3000/students/' + studentId, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedStudent)
+  })
+    .then(function(response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Failed to update student');
+      }
+    })
+    .then(function(data) {
+      console.log('Student updated successfully');
+      // Perform any additional actions or display success message
+      $('#editStudentModal').modal('hide');
+
+      fetch('http://localhost:3000/students')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(objectData) {
+          let tableData = "";
+          objectData.forEach(function(values) {
+            tableData += `
+              <tr data-id="${values._id}">
+                <td>${values.name}</td>
+                <td>${values.email}</td>
+                <td>${values.password}</td>
+                <td>${values.contact}</td>
+                <td>${new Date(values.date_of_admission).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}</td>
+                <td>
+                  <button class="btn btn-primary">Edit</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
+              </tr>`;
+          });
+          $('#table_body').html(tableData);
+        });
+    })
+    .catch(function(error) {
+      console.error('Error updating student:', error);
+      // Handle the error or display error message
+    });
+});
+
