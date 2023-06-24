@@ -1,3 +1,9 @@
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
 .section {
     display: none;
   }
@@ -6,5 +12,41 @@
     background-color: #f8f9fa; /* Set your desired background color */
     color: #333; /* Set your desired text color */
     font-weight: bold;
+  }
+  
+  .navbar {
+    background-color: #efefef; /* Change the background color */
+    padding: 10px 0; /* Add some padding */
+    border-bottom: 1px solid #aaaaaa;
+    box-shadow: 3px 1px 12px #888888;
+  }
+  
+  .navbar-brand {
+    color: #000000; /* Change the brand/logo color */
+    font-size: 24px; /* Adjust the font size */
+    font-weight: bold; /* Make it bold */
+    margin-right: 30px; /* Add some space between the brand/logo and the navbar links */
+  }
+  
+  .navbar-toggler {
+    border: none; /* Remove the border from the toggler */
+  }
+  
+  .navbar-nav .nav-item {
+    margin-right: 15px; /* Add some space between the navbar links */
+  }
+  
+  .navbar-nav .nav-link {
+    color: #6c757d; /* Change the link color */
+    font-weight: 500; /* Make it slightly bolder */
+    transition: color 0.3s; /* Add a smooth color transition on hover */
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #343a40; /* Change the link color on hover */
+    background-color: #202020;
+    border-radius: 5px;
+    color: white;
+    transition: 0.5s;
   }
   
