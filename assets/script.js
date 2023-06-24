@@ -342,3 +342,79 @@ $('#saveEditStudentButton').click(function() {
     });
 });
 
+// Edit course data
+$('#course_table_body').on('click', '.btn-primary', function() {
+  var row = $(this).closest('tr');
+  var courseId = row.data('id');
+
+  // Retrieve course data from the table row
+  var courseName = row.find('td:eq(0)').text();
+  var teacherName = row.find('td:eq(1)').text();
+
+  // Populate modal fields with course data
+  $('#editCourseId').val(courseId);
+  $('#editCourseName').val(courseName);
+  $('#editTeacherName').val(teacherName);
+
+  // Show the edit course modal
+  $('#editCourseModal').modal('show');
+});
+
+// Update course data
+$('#saveEditCourseButton').click(function() {
+  // Get form data from the modal
+  var courseId = $('#editCourseId').val();
+  var courseName = $('#editCourseName').val();
+  var teacherName = $('#editTeacherName').val();
+
+  // Create course object with updated data
+  var updatedCourse = {
+    name: courseName,
+    teacher_name: teacherName
+  };
+
+  // Send PUT request to update the course data
+  fetch('http://localhost:3000/courses/' + courseId, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedCourse)
+  })
+    .then(function(response) {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Failed to update course');
+      }
+    })
+    .then(function(data) {
+      console.log('Course updated successfully');
+      // Perform any additional actions or display success message
+      $('#editCourseModal').modal('hide');
+
+      fetch('http://localhost:3000/courses')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(objectData) {
+          let tableData = "";
+          objectData.forEach(function(values) {
+            tableData += `
+              <tr data-id="${values._id}">
+                <td>${values.name}</td>
+                <td>${values.teacher_name}</td>
+                <td>
+                  <button class="btn btn-primary">Edit</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
+              </tr>`;
+          });
+          $('#course_table_body').html(tableData);
+        });
+    })
+    .catch(function(error) {
+      console.error('Error updating course:', error);
+      // Handle the error or display error message
+    });
+});
