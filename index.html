@@ -8,10 +8,14 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container d-flex justify-content-end">
+    <div class="container">
       <a class="navbar-brand" href="#">Admin Panel</a>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav justify-content-between">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#" data-section="students-section">Students</a>
           </li>
@@ -26,12 +30,8 @@
           </li>
         </ul>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
     </div>
-  </nav>
+  </nav>    
 
   <!-- Students Section -->
   <section id="students-section" class="section">
@@ -212,6 +212,46 @@
             </div>
             <div class="d-grid">
               <button type="button" class="btn btn-primary btn-block" id="saveCourseButton">ADD COURSE</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <!-- edit students data modal -->
+  <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editStudentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="editStudentModalLabel">Edit Student</h5>
+          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editStudentForm">
+            <div class="mb-3">
+              <label for="editStudentName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="editStudentName">
+            </div>
+            <div class="mb-3">
+              <label for="editEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="editEmail">
+            </div>
+            <div class="mb-3">
+              <label for="editPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="editPassword">
+            </div>
+            <div class="mb-3">
+              <label for="editContactNumber" class="form-label">Contact Number</label>
+              <input type="text" class="form-control" id="editContactNumber">
+            </div>
+            <div class="mb-3">
+              <label for="editDateOfAdmission" class="form-label">Date of Admission</label>
+              <input type="date" class="form-control" id="editDateOfAdmission">
+            </div>
+            <input type="hidden" id="editStudentId">
+            <div class="d-grid">
+              <button type="button" class="btn btn-primary btn-block" id="saveEditStudentButton">SAVE CHANGES</button>
             </div>
           </form>
         </div>
