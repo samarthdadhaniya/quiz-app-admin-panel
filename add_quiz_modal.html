@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Quiz Modal</title>
+  <link rel="stylesheet" href="assets/quiz_modal_style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+  <div class="modal fade" id="addQuizModal" tabindex="-1" aria-labelledby="addQuizModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="addQuizModalLabel">Add Quiz</h5>
+          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addQuizForm">
+            <div id="questionsContainer">
+              <div class="question-input mb-3">
+                <label class="form-label">Name Of Quiz -</label>
+                <input type="text" class="form-control" name="quiz_name" placeholder="Quiz Name Here..">
+                <hr>
+                <label class="form-label">Question 1</label>
+                <input type="text" class="form-control" name="question-1">
+                <div class="options-container">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option-1" required>
+                    <input type="text" class="form-control option-input" name="option-1" required>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option-1" required>
+                    <input type="text" class="form-control option-input" name="option-1" required>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option-1" required>
+                    <input type="text" class="form-control option-input" name="option-1" required>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option-1" required>
+                    <input type="text" class="form-control option-input" name="option-1" required>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-warning mt-3" id="addQuestionButton">Add Question</button>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/add_quiz_modal.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
