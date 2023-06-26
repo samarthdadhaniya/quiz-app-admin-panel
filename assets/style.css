@@ -36,6 +36,13 @@
     margin-right: 15px; /* Add some space between the navbar links */
   }
   
+  .active{
+    background-color: #202020;
+    border-radius: 5px;
+    color: rgb(255, 255, 255) !important;
+    transition: 0.5s;
+  }
+
   .navbar-nav .nav-link {
     color: #6c757d; /* Change the link color */
     font-weight: 500; /* Make it slightly bolder */

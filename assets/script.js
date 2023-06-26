@@ -1,3 +1,13 @@
+$(document).ready(function() {
+  // Add active class to the clicked nav-link
+  $(".nav-link").click(function() {
+    // Remove active class from all nav-links
+    $(".nav-link").removeClass("active");
+    // Add active class to the clicked nav-link
+    $(this).addClass("active");
+  });
+});
+
 $(document).ready(function () {
   // Handle navigation item click
   $('.navbar-nav .nav-link').click(function (e) {
@@ -417,4 +427,16 @@ $('#saveEditCourseButton').click(function() {
       console.error('Error updating course:', error);
       // Handle the error or display error message
     });
+});
+
+
+$(document).ready(function() {
+  // Add Quiz button click event
+  $("#add-quiz-button").click(function() {
+    // Load modal content from add_quiz_modal.html file
+    $("#modalContainer").load("add_quiz_modal.html", function() {
+      // Show the modal
+      $("#addQuizModal").modal("show");
+    });
+  });
 });
