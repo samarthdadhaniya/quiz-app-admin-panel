@@ -11,7 +11,7 @@
     <div class="container">
       <a class="navbar-brand" href="#">Admin Panel</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -31,7 +31,7 @@
         </ul>
       </div>
     </div>
-  </nav>    
+  </nav> 
 
   <!-- Students Section -->
   <section id="students-section" class="section">
@@ -44,7 +44,6 @@
       <!-- Display Student Data -->
       <div class="card mt-4">
         <div class="card-body">
-          <h5 class="card-title">Student Data</h5>
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead class="thead-dark">
@@ -73,11 +72,10 @@
         <h2>Quiz</h2>
         <button id="add-quiz-button" class="btn btn-primary">Add Quiz</button>
       </div>
-
+  
       <!-- Display Quiz Data -->
       <div class="card mt-4">
         <div class="card-body">
-          <h5 class="card-title">Quiz Data</h5>
           <table class="table">
             <thead>
               <tr>
@@ -87,13 +85,34 @@
                 <th>Actions</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- Quiz data rows go here -->
+            <tbody id="quizDataBody">
+              <tr>
+                <td>Quiz 1</td>
+                <td>10 minutes</td>
+                <td>5</td>
+                <td>
+                  <button class="btn btn-primary">Edit</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Quiz 2</td>
+                <td>15 minutes</td>
+                <td>7</td>
+                <td>
+                  <button class="btn btn-primary">Edit</button>
+                  <button class="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+              <!-- Add more quiz data rows as needed -->
             </tbody>
           </table>
         </div>
       </div>
     </div>
+  
+    <!-- Modal container -->
+    <div id="modalContainer"></div>
   </section>
 
   <!-- Courses Section -->
@@ -107,7 +126,6 @@
       <!-- Display Course Data -->
       <div class="card mt-4">
         <div class="card-body">
-          <h5 class="card-title">Course Data</h5>
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead class="thead-dark">
